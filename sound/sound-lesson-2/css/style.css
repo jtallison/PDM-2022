@@ -9,3 +9,8 @@ canvas {
 #heartDiv {
   background-color:darkorange;
 }
+
+#instrument {
+  display: flex;
+  flex-wrap: wrap;
+}
