@@ -1,0 +1,19 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+canvas {
+  display: block;
+}
+
+#buttonDiv {
+  background-color: blueviolet;
+  width: 150px;
+  height: 50px;
+}
+
+.buttonClass {
+  background-color: blueviolet;
+  width: 150px;
+  height: 50px;
+}
