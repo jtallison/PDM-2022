@@ -1,5 +1,20 @@
+let slider;
+
 const synth = new Tone.PluckSynth();
-const drum = new Tone.MembraneSynth();
+const drum = new Tone.MembraneSynth({
+	"pitchDecay"  : 0.2 ,
+	"octaves"  : 2.2 ,
+	"oscillator"  : {
+		"type"  : "sine"
+}  ,
+	"envelope"  : {
+		"attack"  : 0.001 ,
+		"decay"  : 0.8 ,
+		"sustain"  : 0.01 ,
+		"release"  : 0.4 ,
+		"attackCurve"  : "exponential"
+	}
+});
 const metal = new Tone.MetalSynth({
 	"frequency"  : 45 ,
 	"envelope"  : {
@@ -12,7 +27,20 @@ const metal = new Tone.MetalSynth({
 	"resonance"  : 300 ,
 	"octaves"  : 1.5
 });
+
 const reverb = new Tone.JCReverb(0.4).toDestination();
+
+const osc = new Tone.OmniOscillator("C#4", "pwm").start();
+const ampEnv = new Tone.AmplitudeEnvelope({
+  attack: 0.1,
+  decay: 0.2,
+  sustain: 1.0,
+  release: 0.8
+})
+
+osc.connect(ampEnv);
+ampEnv.connect(reverb);
+
 synth.connect(reverb);
 drum.connect(reverb);
 metal.connect(reverb);
@@ -35,6 +63,11 @@ function setup() {
   // synth.harmonicity.value = 1.25;
   //play a middle 'C' for the duration of an 8th note
   synth.triggerAttackRelease("C4", "8n");
+
+  slider = new Nexus.Slider('#slider');
+  slider.on('change', (v)=>{
+    reverb.roomSize.value = v;
+  })
 }
 
 function draw() {
@@ -44,7 +77,11 @@ function draw() {
 function keyPressed() {
   let toPlay = notes[key];
   console.log(toPlay);
-  synth.triggerAttackRelease(toPlay, 0.5);
 
-  drum.triggerAttackRelease("C2", "8n", '+1');
+  osc.frequency.value = toPlay;
+  ampEnv.triggerAttackRelease('8n');
+  
+  // synth.triggerAttackRelease(toPlay, 0.5);
+  // metal.triggerAttackRelease("C3", '8n', '+0.5')
+  // drum.triggerAttackRelease("C2", "8n", '+1');
 }
