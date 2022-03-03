@@ -42,12 +42,9 @@ noiseEnv.connect(noiseFilter);
 noiseFilter.connect(gain);
 
 
-
-
 // UI elements
 let button1;  // using p5.dom
 let button2;  // using p5.dom
-let button3;  // button created by using a normal dom element
 
 let slider1;  // using p5.dom
 // NexusUI elements
@@ -77,9 +74,6 @@ function setup() {
   button2 = createButton("multiPing");
   button2.position(200, 340);
   button2.mousePressed( () => multiPing(5) );
-
-  button3 = document.getElementById('heartDiv');
-  button3.onclick = () => buttonSound('theHeart');
 
   slider1 = createSlider(0,1,0,0.1);
   slider1.mouseReleased(()=>{
@@ -112,16 +106,21 @@ function setup() {
 
 function draw() {
   background(220);
+  text("Press Space to start audio", 10, 40);
 }
 
 function keyPressed(){
   console.log(key, keyCode);
   if(key==="1"){
-
+    
   } else if (key === "2"){
 
   } else if (key === "3") {
 
+  }
+  if(key===32){
+    Tone.start();
+    ampEnv.triggerAttackRelease('8n')
   }
 }
 

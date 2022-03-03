@@ -44,6 +44,7 @@ function draw() {
 }
 
 function mousePressed() {
+  Tone.start();
   console.log('pressed');
   ampEnv.triggerAttackRelease('4n');
   // osc.frequency.linearRampTo(400,'+1');
