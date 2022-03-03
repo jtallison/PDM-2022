@@ -118,13 +118,14 @@ function keyPressed(){
   } else if (key === "3") {
 
   }
-  if(key===32){
+  if(keyCode===32){
     Tone.start();
     ampEnv.triggerAttackRelease('8n')
   }
 }
 
 function ping(number=1) {
+  Tone.start();
   ampEnv.triggerAttackRelease('8n')
 }
 
