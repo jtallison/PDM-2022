@@ -1,0 +1,3 @@
+PDMSerial   KEYWORD1
+checkSerial    KEYWORD2
+transmitSensor     KEYWORD2

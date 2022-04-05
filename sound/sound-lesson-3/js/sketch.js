@@ -125,7 +125,6 @@ function keyPressed(){
 }
 
 function ping(number=1) {
-  Tone.start();
   ampEnv.triggerAttackRelease('8n')
 }
 
