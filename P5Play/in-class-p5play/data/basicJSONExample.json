@@ -1,0 +1,14 @@
+
+{
+  "name": "Bob",
+  "age": 22,
+  "pets": ["dog", "chicken"],
+  "sibling": {
+    "name": "Sarah",
+    "age": "25",
+    "pets": ["dog", "chicken", "chinchilla"]
+  }
+}
+
+
+
