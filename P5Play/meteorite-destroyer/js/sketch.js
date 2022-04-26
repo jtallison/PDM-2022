@@ -68,7 +68,8 @@ function keyPressed() {
     newPhot.setSpeed(5,270);
     newPhot.life = photonLife;
     photons.add(newPhot);
-
+    synth.triggerAttackRelease('G4',1.0);
+    synth.frequency.rampTo('G3', 1.0)
   } else if(keyCode == LEFT_ARROW) {
     ship.addSpeed(0.2, 180);
   } else if(keyCode == RIGHT_ARROW) {
