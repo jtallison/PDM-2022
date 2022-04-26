@@ -8,7 +8,7 @@ function preload() {
   fetch("https://data.nasa.gov/resource/y77d-th95.json")
   .then(res => res.json())
   .then(out => {
-    console.log("Got Metorites")
+    console.log("Got Meteorites")
     meteors = out;
   })
 
