@@ -6,6 +6,8 @@ let photons;
 let meteors;
 let meteorSpawnTimer;
 
+let photonSynth = new Tone.MetalSynth().toDestination();
+let meteorExplosion = new Tone.Player('data/meteorExplosion.wav').toDestination();
 
 function preload() {
 
@@ -49,10 +51,7 @@ function keyPressed() {
     ship.addSpeed(1, 0)
   }
   if(key == " "){
-    let photon = createSprite(ship.position.x, ship.position.y, 5,5);
-    photon.setSpeed(10, 270);
-    photon.life = 30;
-    photons.add(photon);
+    shootPhoton();
   }
 }
 
@@ -60,6 +59,15 @@ function moveDown(distance=2) {
   sprites.forEach( (spr)=>{
     spr.setVelocity(0,distance);
   })
+}
+
+function shootPhoton() {
+  let photon = createSprite(ship.position.x, ship.position.y, 5,5);
+  photon.setSpeed(10, 270);
+  photon.life = 30;
+  photons.add(photon);
+  photonSynth.triggerAttackRelease('G3', '4n');
+  photonSynth.frequency.rampTo('G4','4n');
 }
 
 function spawnMeteor() {
@@ -85,4 +93,5 @@ function spawnMeteor() {
 function meteorHit(meteor, photon) {
   photon.remove();
   meteor.remove();
+  meteorExplosion.start();
 }
