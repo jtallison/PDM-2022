@@ -28,6 +28,12 @@ function setup() {
   ship = createSprite(width/2, height-25, 25, 25);
   // meteorSpawnTimer = setInterval( ()=> {spawnMeteor()}, 2000);
   meteorSpawnTimer = setInterval( spawnMeteor, 2000);
+
+
+  document.querySelector('button')?.addEventListener('click', async () => {
+    await Tone.start()
+    console.log('audio is ready')
+  })
 }
 
 function draw() {
